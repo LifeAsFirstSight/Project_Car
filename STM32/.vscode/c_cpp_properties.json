@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "E:/app/STMcubeMX/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc",
+                "E:/app/STMcubeMX/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy",
+                "E:/app/STMcubeMX/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Include",
+                "D:/app/apps/StmProject/Car/Drivers/CMSIS/Include",
+                "${workspaceFolder}/Core/Inc",
+                "${workspaceFolder}/API"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "STM32F103C8T6",
+                "USE_HAL_DRIVER",
+                "STM32F1xx"
+            ],
+            "cStandard": "c99",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}
