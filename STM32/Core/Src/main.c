@@ -22,10 +22,14 @@
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
-
+#include "espcam.h"
+#include "string.h"
+#include "stdio.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+uint8_t rx_buffer[BUFFER_SIZE];
+uint8_t received_length;
+extern uint8_t Serial_RxFlag;
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,6 +61,11 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void Enable_UART_Idle_Interrupt(void)
+{
+    HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
+    __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
+}
 
 /* USER CODE END 0 */
 
@@ -93,16 +102,13 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_TIM3_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	OLED_GPIO_Init();
-	//OLED_Display_On();
-	OLED_DrawChar(10, 10, 0x01);
-	//OLED_Refresh();
   while (1)
   {
     /* USER CODE END WHILE */

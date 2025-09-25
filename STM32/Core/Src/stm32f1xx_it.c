@@ -22,6 +22,21 @@
 #include "stm32f1xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+/**
+ * 串口接收相关变量定义
+ * 
+ * 以下变量用于串口数据接收和状态管理：
+ * - received_length: 外部声明的接收数据长度变量
+ * - Serial_RxFlag: 串口接收完成标志位
+ * - rx_buffer: 外部声明的接收缓冲区数组
+ * - system_millis: 外部声明的系统毫秒计数器
+ * - isFirstReceive: 首次接收标志位，用于判断是否为第一次接收数据
+ */
+extern uint8_t received_length;         // 接收数据长度
+uint8_t Serial_RxFlag = 0;              // 串口接收完成标志位
+extern uint8_t rx_buffer[BUFFER_SIZE];  // 接收缓冲区              // 定义缓冲区大小
+extern volatile uint32_t system_millis; // 系统毫秒计数器
+volatile uint8_t isFirstReceive = 0;    // 首次接收标志位，0表示未接收过，1表示已接收过
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -231,14 +246,41 @@ void TIM2_IRQHandler(void)
 /**
   * @brief This function handles USART2 global interrupt.
   */
+/**
+ * @brief USART2中断服务函数
+ * @details 处理USART2串口的空闲中断，用于接收不定长数据
+ * @note 该函数由硬件中断自动调用，无需手动调用
+ * @param 无
+ * @return 无
+ */
 void USART2_IRQHandler(void)
 {
   /* USER CODE BEGIN USART2_IRQn 0 */
-
+	/* 检查UART空闲标志位是否被置位 */
+	if (__HAL_UART_GET_FLAG(&huart2, UART_FLAG_IDLE) != RESET)
+    {
+        __HAL_DMA_DISABLE(&hdma_usart2_rx);  // 关闭DMA接收通道
+        Serial_RxFlag = 1;                   // 设置接收完成标志位
+		
+		/* 判断是否为首次接收数据 */
+		if (isFirstReceive == 0) {
+          // 这里可以添加首次接收的特殊处理（可选）
+          // 例如：记录首次接收时间、初始化某些参数等
+            isFirstReceive =  1;  // 标记为"已接收过"，后续不再是首次
+      }
+		
+		/* 计算实际接收到的数据长度 */
+		received_length = BUFFER_SIZE - __HAL_DMA_GET_COUNTER(&hdma_usart2_rx);
+		
+//		HAL_UART_Transmit_DMA(&huart1,rx_buffer,received_length);
+		__HAL_DMA_DISABLE(&hdma_usart2_rx);  // 再次关闭DMA接收通道
+        hdma_usart2_rx.Instance->CNDTR = BUFFER_SIZE;  // 重新配置DMA接收缓冲区大小
+        __HAL_DMA_ENABLE(&hdma_usart2_rx);   // 重新启动DMA接收
+		__HAL_UART_CLEAR_IDLEFLAG(&huart2);  // 清除UART空闲标志位
+    }
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
   /* USER CODE BEGIN USART2_IRQn 1 */
-
   /* USER CODE END USART2_IRQn 1 */
 }
 

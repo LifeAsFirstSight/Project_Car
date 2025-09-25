@@ -1,5 +1,10 @@
 #include "main.h"
 #include "sensor.h"
+#include "stm32f1xx_hal.h"    // HAL 核心库
+#include "tim.h"               // 你在 CubeMX 里生成的定时器句柄头文件
+#include "gpio.h"              // GPIO 引脚宏定义
+#include <stdint.h>
+
 
 uint32_t ic_val1 = 0;
 uint32_t ic_val2 = 0;
@@ -72,38 +77,5 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
     }
 }
 
-/**
- * @brief  输入捕获回调函数，用于处理TIM输入捕获中断
- * @param  htim: TIM句柄指针，指向触发中断的定时器实例
- * @retval None
- * 
- * 该函数用于超声波测距应用，通过捕获回波信号的上升沿和下降沿来计算距离。
- * 第一次捕获记录起始时间并切换为下降沿捕获，第二次捕获记录结束时间，
- * 通过两个时间差值计算出超声波传播距离。
- */				
-void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
-{
-    if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1) 
-    {
-        if (is_first_captured == 0)  
-        {
-            ic_val1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // ????
-            is_first_captured = 1;
-            __HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_FALLING);
-        }
-        else if (is_first_captured == 1) 
-        {
-            ic_val2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
-            if (ic_val2 > ic_val1)
-                difference = ic_val2 - ic_val1;
-            else
-                difference = (0xFFFF - ic_val1) + ic_val2;
-            distance = (difference * 0.034) / 2;  // cm
-            is_first_captured = 0;
-            __HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_RISING);
-            __HAL_TIM_DISABLE_IT(&htim2, TIM_IT_CC1);
-        }
-    }
-}
 
 

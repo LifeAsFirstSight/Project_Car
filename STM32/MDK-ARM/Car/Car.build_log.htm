@@ -21,20 +21,93 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
 Dialog DLL:      TCM.DLL V1.34.0.0
  
 <h2>Project:</h2>
-D:\app\apps\StmProject\Car\MDK-ARM\Car.uvprojx
-Project File Date:  09/02/2025
+F:\GitHub_for_Myself\Project\STM32\MDK-ARM\Car.uvprojx
+Project File Date:  09/25/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'F:\Keil\ARM\ARMCC\Bin'
 Build target 'Car'
+compiling espcam.c...
+..\API\sensor.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\API\sensor.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\API\espcam.c(12): error:  #20: identifier "CommandType" is undefined
+      CommandType cmd;       // 命令类型
+..\API\espcam.c(29): error:  #20: identifier "CMD_STOP" is undefined
+  static Command current_cmd = {CMD_STOP, 0, 0};
+..\API\espcam.c(37): error:  #254: type name is not allowed
+      Car_Forward(uint16_t speed); // 电机前进
+..\API\espcam.c(37): error:  #18: expected a ")"
+      Car_Forward(uint16_t speed); // 电机前进
+..\API\espcam.c(42): error:  #254: type name is not allowed
+      Car_Backward(uint16_t speed);// 电机后退
+..\API\espcam.c(42): error:  #18: expected a ")"
+      Car_Backward(uint16_t speed);// 电机后退
+..\API\espcam.c(47): error:  #254: type name is not allowed
+      Car_TurnLeft(uint16_t speed); // 电机左转
+..\API\espcam.c(47): error:  #18: expected a ")"
+      Car_TurnLeft(uint16_t speed); // 电机左转
+..\API\espcam.c(52): error:  #254: type name is not allowed
+      Car_TurnRight(uint16_t speed); // 电机右转
+..\API\espcam.c(52): error:  #18: expected a ")"
+      Car_TurnRight(uint16_t speed); // 电机右转
+..\API\espcam.c(62): error:  #20: identifier "CommandType" is undefined
+  static void transition_state(CommandType cmd) {
+..\API\espcam.c(68): error:  #20: identifier "CMD_MOVE_FORWARD" is undefined
+                  case CMD_MOVE_FORWARD: current_state = STATE_MOVING_FORWARD; break;
+..\API\espcam.c(69): error:  #20: identifier "CMD_MOVE_BACKWARD" is undefined
+                  case CMD_MOVE_BACKWARD: current_state = STATE_MOVING_BACKWARD; break;
+..\API\espcam.c(70): error:  #20: identifier "CMD_TURN_LEFT" is undefined
+                  case CMD_TURN_LEFT: current_state = STATE_TURNING_LEFT; break;
+..\API\espcam.c(71): error:  #20: identifier "CMD_TURN_RIGHT" is undefined
+                  case CMD_TURN_RIGHT: current_state = STATE_TURNING_RIGHT; break;
+..\API\espcam.c(73): error:  #20: identifier "CMD_SERVO1_ANGLE" is undefined
+                  case CMD_SERVO1_ANGLE: current_state = STATE_SERVO1_ACTIVE; break;
+..\API\espcam.c(73): error:  #20: identifier "STATE_SERVO1_ACTIVE" is undefined
+                  case CMD_SERVO1_ANGLE: current_state = STATE_SERVO1_ACTIVE; break;
+..\API\espcam.c(85): error:  #20: identifier "CMD_MOVE_FORWARD" is undefined
+              } else if(cmd == CMD_MOVE_FORWARD) {
+..\API\espcam.c(87): error:  #20: identifier "CMD_MOVE_BACKWARD" is undefined
+              } else if(cmd == CMD_MOVE_BACKWARD) {
+..\API\espcam.c(89): error:  #20: identifier "CMD_TURN_LEFT" is undefined
+              } else if(cmd == CMD_TURN_LEFT) {
+..\API\espcam.c(91): error:  #20: identifier "CMD_TURN_RIGHT" is undefined
+              } else if(cmd == CMD_TURN_RIGHT) {
+..\API\espcam.c(107): error:  #20: identifier "CMD_MOVE_FORWARD" is undefined
+              current_cmd.cmd = CMD_MOVE_FORWARD;
+..\API\espcam.c(111): error:  #20: identifier "CMD_MOVE_BACKWARD" is undefined
+              current_cmd.cmd = CMD_MOVE_BACKWARD;
+..\API\espcam.c(115): error:  #20: identifier "CMD_TURN_LEFT" is undefined
+              current_cmd.cmd = CMD_TURN_LEFT;
+..\API\espcam.c(119): error:  #20: identifier "CMD_TURN_RIGHT" is undefined
+              current_cmd.cmd = CMD_TURN_RIGHT;
+..\API\espcam.c(128): error:  #20: identifier "CMD_SERVO1_ANGLE" is undefined
+                  current_cmd.cmd = CMD_SERVO1_ANGLE;
+..\API\espcam.c(131): warning:  #186-D: pointless comparison of unsigned integer with zero
+                  if(current_cmd.param >= 0 && current_cmd.param <= 180) {
+..\API\espcam.c(161): warning:  #1-D: last line of file ends without a newline
+  }
+..\API\espcam.c(101): warning:  #177-D: function "parse_uart_command"  was declared but never referenced
+  static void parse_uart_command(uint8_t *data, uint16_t len) {
+..\API\espcam.c: 5 warnings, 26 errors
+compiling stm32f1xx_it.c...
+compiling dma.c...
 compiling main.c...
-..\API\oled.h(49): warning:  #1-D: last line of file ends without a newline
-  // 引脚连接：SCK=PB13, MOSI=PB14, DC=PA8, CS=PB12
+..\API\sensor.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
 ../Core/Src/main.c: 1 warning, 0 errors
-linking...
-Program Size: Code=12048 RO-data=312 RW-data=16 ZI-data=3168  
-FromELF: creating hex file...
-"Car\Car.axf" - 0 Error(s), 1 Warning(s).
+compiling usart.c...
+compiling servo.c...
+compiling motor.c...
+compiling stm32f1xx_hal_msp.c...
+compiling gpio.c...
+compiling tim.c...
+compiling sensor.c...
+..\API\sensor.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\API\sensor.c: 1 warning, 0 errors
+"Car\Car.axf" - 26 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -57,7 +130,8 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.0.2
-Build Time Elapsed:  00:00:02
+Target not created.
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>

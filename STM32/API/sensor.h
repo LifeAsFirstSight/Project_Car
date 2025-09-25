@@ -1,5 +1,5 @@
-#define SERSOR_H
-#ifndef SERSOR_H
+#define _SERSOR_H
+#ifndef _SERSOR_H
 
 #define HC04_Trig_Pin_PORT   GPIOA
 #define HC04_Trig_Pin        GPIO_PIN_1
