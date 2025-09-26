@@ -3,39 +3,65 @@
 #include "motor.h"
 #include "sensor.h"
 #include "servo.h"
-#include "string.h"
 #include "stdio.h"
-#include "stdlib.h"
+#include <string.h>
+#include <stdlib.h>
 
 // ------------------------- 类型定义 -------------------------
 
+/**
+ * @brief 命令类型枚举定义
+ * 
+ * 定义了系统支持的所有命令类型，包括移动控制和舵机控制命令
+ */
 typedef enum {
-    CMD_STOP = 0,
-    CMD_MOVE_FORWARD,
-    CMD_MOVE_BACKWARD,
-    CMD_TURN_LEFT,
-    CMD_TURN_RIGHT,
-    CMD_SERVO1_ANGLE,
+    CMD_STOP = 0,          // 停止命令
+    CMD_MOVE_FORWARD,      // 向前移动命令
+    CMD_MOVE_BACKWARD,     // 向后移动命令
+    CMD_TURN_LEFT,         // 向左转向命令
+    CMD_TURN_RIGHT,        // 向右转向命令
+    CMD_SERVO1_ANGLE,      // 舵机1角度控制命令
 } CommandType;
 
+/**
+ * @brief 命令结构体定义
+ * 
+ * 用于封装单个命令的所有信息，包括命令类型、参数和有效性标识
+ */
 typedef struct {
     CommandType cmd;       // 命令类型
     uint16_t param;        // 参数（速度或角度）
     uint8_t is_valid;      // 命令是否有效
 } Command;
 
+/**
+ * @brief 系统状态枚举定义
+ * 
+ * 定义了系统可能处于的所有运行状态
+ */
 typedef enum {
-    STATE_IDLE,
-    STATE_MOVING_FORWARD,
-    STATE_MOVING_BACKWARD,
-    STATE_TURNING_LEFT,
-    STATE_TURNING_RIGHT,
-    STATE_STOPPED,
+    STATE_IDLE,            // 空闲状态
+    STATE_MOVING_FORWARD,  // 向前移动状态
+    STATE_MOVING_BACKWARD, // 向后移动状态
+    STATE_TURNING_LEFT,    // 向左转向状态
+    STATE_TURNING_RIGHT,   // 向右转向状态
+    STATE_STOPPED,         // 停止状态
 } SystemState;
 
 // ------------------------- 全局变量 -------------------------
 
+/**
+ * @brief 系统当前运行状态
+ * 
+ * 记录系统当前所处的运行状态，初始状态为停止状态
+ */
 static SystemState current_state = STATE_STOPPED;
+
+/**
+ * @brief 当前命令缓冲区
+ * 
+ * 存储当前正在处理的命令，初始为无效的停止命令
+ */
 static Command current_cmd = {CMD_STOP, 0, 0};
 
 // 默认速度
@@ -43,33 +69,64 @@ static Command current_cmd = {CMD_STOP, 0, 0};
 
 // ------------------------- 状态函数 -------------------------
 
+/**
+ * @brief 空闲状态处理函数
+ * 
+ * 处理小车空闲状态下的行为
+ */
 static void idle_state(void) {
-
+     Car_Stop();
+     printf("status free\r\n");
 }
 
+/**
+ * @brief 前进状态处理函数
+ * 
+ * 控制小车以100%速度前进，并输出状态信息
+ */
 static void forward_state(void) {
-    Car_Forward(current_cmd.param ? current_cmd.param : DEFAULT_SPEED);
-    printf("状态：前进中\n");
+    Car_Forward(100);
+    printf("status go\r\n");
 }
 
+/**
+ * @brief 后退状态处理函数
+ * 
+ * 控制小车以100%速度后退，并输出状态信息
+ */
 static void backward_state(void) {
-    Car_Backward(current_cmd.param ? current_cmd.param : DEFAULT_SPEED);
-    printf("状态：后退中\n");
+    Car_Backward(100);
+    printf("status back\r\n");
 }
 
+/**
+ * @brief 左转状态处理函数
+ * 
+ * 控制小车以100%速度左转，并输出状态信息
+ */
 static void left_state(void) {
-    Car_TurnLeft(current_cmd.param ? current_cmd.param : DEFAULT_SPEED);
-    printf("状态：左转中\n");
+    Car_Turn_Left(100);
+    printf("status turnleft\r\n");
 }
 
+/**
+ * @brief 右转状态处理函数
+ * 
+ * 控制小车以100%速度右转，并输出状态信息
+ */
 static void right_state(void) {
-    Car_TurnRight(current_cmd.param ? current_cmd.param : DEFAULT_SPEED);
-    printf("状态：右转中\n");
+    Car_Turn_Right(100);
+    printf("status turnright\r\n");
 }
 
+/**
+ * @brief 停止状态处理函数
+ * 
+ * 控制小车停止运动，并输出状态信息
+ */
 static void stop_state(void) {
-    Motor_Stop();
-    printf("状态：已停止\n");
+    Car_Stop();
+    printf("status stop\r\n");
 }
 
 // ------------------------- 状态转换 -------------------------
@@ -140,7 +197,7 @@ void parse_uart_command(uint8_t *data, uint16_t len) {
             if(current_cmd.param <= 180) current_cmd.is_valid = 1;
         }
     } else {
-        printf("未知命令\n");
+        printf("unknown\r\n");
     }
 }
 

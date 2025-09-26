@@ -28,13 +28,8 @@ car\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 car\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 car\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 car\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-car\main.o: F:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 car\main.o: ../Core/Inc/dma.h
 car\main.o: ../Core/Inc/tim.h
 car\main.o: ../Core/Inc/usart.h
 car\main.o: ../Core/Inc/gpio.h
 car\main.o: ..\API\espcam.h
-car\main.o: ..\API\motor.h
-car\main.o: ..\API\sensor.h
-car\main.o: ..\API\servo.h
-car\main.o: F:\Keil\ARM\ARMCC\Bin\..\include\string.h

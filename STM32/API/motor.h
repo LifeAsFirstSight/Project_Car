@@ -27,9 +27,9 @@ void Motor_Right_Stop(void);
 // 小车整体动作
 void Car_Forward(uint16_t speed);
 void Car_Backward(uint16_t speed);
-void Car_TurnLeft(uint16_t speed);
-void Car_TurnRight(uint16_t speed);
-void Motor_Stop(void);
+void Car_Turn_Left(uint16_t speed);
+void Car_Turn_Right(uint16_t speed);
+void Car_Stop(void);
 
 
 

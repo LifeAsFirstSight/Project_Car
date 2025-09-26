@@ -29,4 +29,5 @@ car\usart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 car\usart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 car\usart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 car\usart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
+car\usart.o: F:\Keil\ARM\ARMCC\Bin\..\include\string.h
 car\usart.o: F:\Keil\ARM\ARMCC\Bin\..\include\stdio.h

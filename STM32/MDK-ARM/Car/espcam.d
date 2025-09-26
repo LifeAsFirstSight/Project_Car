@@ -28,12 +28,11 @@ car\espcam.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 car\espcam.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 car\espcam.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 car\espcam.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-car\espcam.o: F:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 car\espcam.o: ..\API\espcam.h
 car\espcam.o: ..\API\motor.h
 car\espcam.o: ..\API\sensor.h
 car\espcam.o: ..\API\servo.h
 car\espcam.o: ../Core/Inc/tim.h
-car\espcam.o: ..\API\sensor.h
+car\espcam.o: F:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 car\espcam.o: F:\Keil\ARM\ARMCC\Bin\..\include\string.h
 car\espcam.o: F:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h

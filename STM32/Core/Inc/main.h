@@ -28,7 +28,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
-#include "stdio.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #define BUFFER_SIZE 256               // 定义缓冲区大小
@@ -36,13 +36,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-extern UART_HandleTypeDef huart2;
 
-int Fputc(int ch, FILE *f)
-{
-    HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
-    return ch;
-}
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

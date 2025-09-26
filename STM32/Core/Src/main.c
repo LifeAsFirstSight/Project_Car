@@ -23,11 +23,10 @@
 #include "usart.h"
 #include "gpio.h"
 #include "espcam.h"
-#include "string.h"
-#include "stdio.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 uint8_t rx_buffer[BUFFER_SIZE];
+uint8_t tx_buffer[BUFFER_SIZE];
 uint8_t received_length;
 extern uint8_t Serial_RxFlag;
 /* USER CODE END Includes */
@@ -61,11 +60,12 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void Enable_UART_Idle_Interrupt(void)
+void UART2_DMA_Init(void)
 {
     HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
-    __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
+    __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);  // ?? IDLE ??
 }
+
 
 /* USER CODE END 0 */
 
@@ -103,6 +103,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
+	UART2_DMA_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -112,7 +113,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+		command_state_machine_run();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

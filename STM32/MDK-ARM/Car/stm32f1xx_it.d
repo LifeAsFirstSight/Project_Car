@@ -28,5 +28,7 @@ car\stm32f1xx_it.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 car\stm32f1xx_it.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 car\stm32f1xx_it.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 car\stm32f1xx_it.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-car\stm32f1xx_it.o: F:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+car\stm32f1xx_it.o: ..\API\espcam.h
 car\stm32f1xx_it.o: ../Core/Inc/stm32f1xx_it.h
+car\stm32f1xx_it.o: F:\Keil\ARM\ARMCC\Bin\..\include\string.h
+car\stm32f1xx_it.o: F:\Keil\ARM\ARMCC\Bin\..\include\stdio.h

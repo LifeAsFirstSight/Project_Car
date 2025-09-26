@@ -3,8 +3,8 @@
 "car\main.o"
 "car\gpio.o"
 "car\dma.o"
-"car\tim.o"
 "car\usart.o"
+"car\tim.o"
 "car\stm32f1xx_it.o"
 "car\stm32f1xx_hal_msp.o"
 "car\stm32f1xx_hal_gpio_ex.o"
@@ -31,7 +31,7 @@
 "car\motor.o"
 "car\servo.o"
 "car\sensor.o"
---strict --scatter "Car\Car.sct"
+--library_type=microlib --strict --scatter "Car\Car.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "Car.map" -o Car\Car.axf

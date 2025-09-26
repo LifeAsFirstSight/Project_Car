@@ -1,8 +1,7 @@
 #include "motor.h"
-#include <stdint.h>
 #include "tim.h"
 #include "gpio.h"
-#include "stm32f1xx_hal.h"
+
 
 // 使用 TIM4_CH1(PB6) 控制左电机速度
 // 使用 TIM4_CH2(PB7) 控制右电机速度

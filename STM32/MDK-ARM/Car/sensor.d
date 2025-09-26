@@ -28,7 +28,6 @@ car\sensor.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 car\sensor.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 car\sensor.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 car\sensor.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-car\sensor.o: F:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 car\sensor.o: ..\API\sensor.h
 car\sensor.o: ../Core/Inc/tim.h
 car\sensor.o: ../Core/Inc/gpio.h
