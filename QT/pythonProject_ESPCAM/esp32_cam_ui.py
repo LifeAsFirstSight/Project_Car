@@ -75,7 +75,7 @@ class Ui_ESP32_CAM(object):
     def retranslateUi(self, ESP32_CAM):
         _translate = QtCore.QCoreApplication.translate
         ESP32_CAM.setWindowTitle(_translate("ESP32_CAM", "ESP32_CAM"))
-        self.lineEdit.setText(_translate("ESP32_CAM", "https://192.168.1.100:443/stream"))
+        self.lineEdit.setText(_translate("ESP32_CAM", "http://192.168.137.6:81/stream"))
         self.startButton.setText(_translate("ESP32_CAM", "开始"))
         self.stopButton.setText(_translate("ESP32_CAM", "停止"))
         self.videoDisplay.setText(_translate("ESP32_CAM", "请输入流地址并点击启动监控"))

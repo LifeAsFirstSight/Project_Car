@@ -26,7 +26,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>https://192.168.1.100:443/stream</string>
+         <string>http://192.168.137.6:81/stream</string>
         </property>
        </widget>
       </item>
