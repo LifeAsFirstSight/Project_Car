@@ -23,6 +23,7 @@
 #include "usart.h"
 #include "gpio.h"
 #include "espcam.h"
+#include "motor.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 uint8_t rx_buffer[BUFFER_SIZE];
@@ -104,6 +105,8 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
 	UART2_DMA_Init();
+	Motor_Init();
+	
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

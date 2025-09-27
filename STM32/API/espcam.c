@@ -65,7 +65,7 @@ static SystemState current_state = STATE_STOPPED;
 static Command current_cmd = {CMD_STOP, 0, 0};
 
 // 默认速度
-#define DEFAULT_SPEED 100
+#define DEFAULT_SPEED 999
 
 // ------------------------- 状态函数 -------------------------
 
@@ -85,7 +85,7 @@ static void idle_state(void) {
  * 控制小车以100%速度前进，并输出状态信息
  */
 static void forward_state(void) {
-    Car_Forward(100);
+    Car_Forward(DEFAULT_SPEED);
     printf("status go\r\n");
 }
 
@@ -95,7 +95,7 @@ static void forward_state(void) {
  * 控制小车以100%速度后退，并输出状态信息
  */
 static void backward_state(void) {
-    Car_Backward(100);
+    Car_Backward(DEFAULT_SPEED);
     printf("status back\r\n");
 }
 
@@ -105,7 +105,7 @@ static void backward_state(void) {
  * 控制小车以100%速度左转，并输出状态信息
  */
 static void left_state(void) {
-    Car_Turn_Left(100);
+    Car_Turn_Left(DEFAULT_SPEED);
     printf("status turnleft\r\n");
 }
 
@@ -115,7 +115,7 @@ static void left_state(void) {
  * 控制小车以100%速度右转，并输出状态信息
  */
 static void right_state(void) {
-    Car_Turn_Right(100);
+    Car_Turn_Right(DEFAULT_SPEED);
     printf("status turnright\r\n");
 }
 
